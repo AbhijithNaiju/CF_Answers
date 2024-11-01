@@ -21,7 +21,7 @@
         </div>
         <cfif isDefined("form.dobYou") && isDefined("form.dobMother")>
             <cfoutput>
-                <cfset newObject = createObject("component", "components.calculation")>
+                <cfset newObject = createObject("component", "components.question_5")>
                 <cfset result = newObject.valueFunction(form.dobYou,form.dobMother)>
                 <div>
                     <span>Your Age </span><span> #result[1]#</span>
