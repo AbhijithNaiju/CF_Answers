@@ -17,7 +17,7 @@
         </div>
         <cfif isDefined("form.inputText")>
             <cfoutput>
-                <cfset newObject = createObject("component", "components.calculation")>
+                <cfset newObject = createObject("component", "components.question_3")>
                 <cfset result = newObject.valueFunction(form.inputText)>
                 #result# 
             </cfoutput>
