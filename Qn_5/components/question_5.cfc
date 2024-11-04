@@ -11,8 +11,8 @@
         <cfif remainingDayYou LT 0>
             <cfset remainingDayYou=(365+remainingDayYou)>    
         </cfif>
-        <cfset nextBirthdayMother = dobYour.setYear(year(now()))>
-        <cfset remainingDayMother = dayOfYear(nextBirthdayYou) - dayOfYear(now())>
+        <cfset nextBirthdayMother = dobMother.setYear(year(now()))>
+        <cfset remainingDayMother = dayOfYear(nextBirthdayMother) - dayOfYear(now())>
         <cfif remainingDayMother LT 0>
             <cfset remainingDayMother=(365+remainingDayMother)>    
         </cfif>

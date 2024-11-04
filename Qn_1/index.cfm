@@ -18,7 +18,7 @@ to do this functionality.
             <cfif isDefined("form.inputNumber")>
         <cfoutput> 
             <cfset number=form.inputNumber>
-            <cfset newObject = createObject("component", "components.qn_1")>
+            <cfset newObject = createObject("component", "components.question_1")>
             <cfset result = newObject.valueFunction(number)>
             #result# 
         </cfoutput>
