@@ -15,9 +15,9 @@
                 the increased value is shown on the page.
         </div>
         <div class = "w-100 m-4" >
-            <input type="submit" name="sumbit">
+            <input type="submit" name="submit">
         </div>
-        <cfif isDefined("form.sumbit")>
+        <cfif isDefined("form.submit")>
             <cfoutput>
                 <cfset newObject = createObject("component", "components.question_19")>
                 <cfset result = newObject.cookieCounter()>
