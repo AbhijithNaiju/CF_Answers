@@ -7,7 +7,7 @@
             <cfset session.mystruct3=structNew()>
         </cfif>
             <cfset session.myStruct3[arguments.inputText1]=arguments.inputText2>
-           <cfset session.myStruct3=StructToSorted(session.myStruct3,"text","desc",false)>
+            <cfset session.myStruct3=StructToSorted(session.myStruct3,"text","desc",false)>
             <cfreturn session.myStruct3>
 
     </cffunction>
