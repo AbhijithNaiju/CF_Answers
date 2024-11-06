@@ -1,13 +1,13 @@
 <cfcomponent>
     <cffunction  name="printDigits" returnType="any">
-        <cfargument  name="imageName" type="any"> 
-        <cfargument  name="descriptionText" type="any"> 
+        <cfargument  name="imageName" type="string"> 
+        <cfargument  name="descriptionText" type="string"> 
         <cfargument  name="inputImage" type="any"> 
-<!---         <cfset imagetype = imageGetProperty(attributes.inputImage, "type")> --->
-        <cfif GetFileInfo("c:\Users\Abhijith\Downloads\pexels-eberhardgross-1612351.jpg").size gt 1000000>
-            <cfreturn "file exeeds the input limit(1 MB)">
-        <cfelse>
-            <cfreturn "Ok">
-        </cfif>
+        <cfset myImage = imageRead(arguments.inputImage)>
+        <cfset local.result['imageName'] = arguments.imageName>
+        <cfset local.result['descriptionText'] = arguments.descriptionText>
+        <cfset local.result['inputImage'] = myImage>
+        <cfset session.structImage = local.result>
+        <cfreturn local.result>
     </cffunction>
 </cfcomponent>

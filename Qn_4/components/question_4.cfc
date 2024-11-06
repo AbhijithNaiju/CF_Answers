@@ -1,48 +1,53 @@
 <cfcomponent>
-    <cffunction  name="printdate" returnType="any">
-        <cfloop index="i" from="-1" to="-7" step=-1>
-            <cfset previousFriday = dateAdd('d', i, now())>
-            <cfif dateFormat( previousFriday,'eeee') eq "friday">
+    <cffunction  name="printdate" returnType="struct">
+        <cfset local.printDateResult = structNew()>
+        <cfloop index="i" from = "-1" to = "-7" step = -1>
+            <cfset local.previousFriday = dateAdd('d', i, now())>
+            <cfif dateFormat( local.previousFriday,'eeee') EQ "friday">
                 <cfbreak>
             </cfif>
         </cfloop>
-        <cfset printDateResult["Today's date"] = dateFormat(now(),'dd')>
-        <cfset printDateResult["Current Month in numeric"] = dateFormat(now(),'mm')>
-        <cfset printDateResult["Current month in word"] = dateFormat(now(),'mmmm')>
-        <cfset printDateResult["Last friday date"] = dateFormat(previousFriday,'dd')>
-        <cfset lastDayOfMonth = now().setDay(daysInMonth(now()))>
-        <cfset printDateResult["Last day of month"] = dateFormat(lastDayOfMonth,"dd-mm-yyyy-eeee")>
-        <cfreturn printDateResult>
+
+        <cfset local.printDateResult["Today's date"] = dateFormat(now(),'dd')>
+        <cfset local.printDateResult["Current Month in numeric"] = dateFormat(now(),'mm')>
+        <cfset local.printDateResult["Current month in word"] = dateFormat(now(),'mmmm')>
+        <cfset local.printDateResult["Last friday date"] = dateFormat(local.previousFriday,'dd')>
+        <cfset local.lastDayOfMonth = now().setDay(daysInMonth(now()))>
+        <cfset local.printDateResult["Last day of month"] = dateFormat(local.lastDayOfMonth,"dd-mm-yyyy-eeee")>
+
+        <cfreturn local.printDateResult>
     </cffunction>
 
-    <cffunction  name="lastFive" returnType="any">
+    <cffunction  name="lastFive" returnType="struct">
+    <cfset local.lastFiveResult = structNew("ordered")>
         <cfloop index="i" from="-1" to="-5" step=-1>
-            <cfset reqDate = dateAdd('d', i, now())>
-            <cfset weekCheck = dateFormat(reqDate,"ee")>
-            <cfif weekcheck eq "sun">
-                <cfset printColor = "red"> 
+            <cfset local.reqDate = now()+i>
+            <cfset local.weekCheck = dateFormat(local.reqDate,"ee")>
 
-           <cfelseif weekcheck eq "mon">
-                <cfset printColor = "green">
+            <cfif local.weekcheck EQ "sun">
+                <cfset local.printColor = "red"> 
 
-            <cfelseif weekcheck eq "tue">
-                <cfset printColor = "orange">
+           <cfelseif local.weekcheck EQ "mon">
+                <cfset local.printColor = "green">
 
-            <cfelseif weekcheck eq "wed">
-                <cfset printColor = "yellow">
+            <cfelseif local.weekcheck EQ "tue">
+                <cfset local.printColor = "orange">
 
-            <cfelseif weekcheck eq   "thu">
-                <cfset printColor = "black">
+            <cfelseif local.weekcheck EQ "wed">
+                <cfset local.printColor = "yellow">
 
-            <cfelseif weekcheck eq "fri">
-                <cfset printColor = "blue">
+            <cfelseif local.weekcheck EQ   "thu">
+                <cfset local.printColor = "black">
 
-            <cfelseif weekcheck eq "sat">
-                <cfset printColor = "red">
+            <cfelseif local.weekcheck EQ "fri">
+                <cfset local.printColor = "blue">
+
+            <cfelseif local.weekcheck EQ "sat">
+                <cfset local.printColor = "red">
             </cfif>
-            <cfset lastFiveDate=dateFormat(reqDate,'dd-mm-yyyy-eeee')>
-            <cfset lastFiveResult[printColor] = lastFiveDate>
+            <cfset local.lastFiveDate=dateFormat(local.reqDate,'dd-mm-yyyy-eeee')>
+            <cfset local.lastFiveResult[local.lastFiveDate] = local.printColor>
         </cfloop>
-        <cfreturn lastFiveResult>
+        <cfreturn local.lastFiveResult>
     </cffunction>
 </cfcomponent>

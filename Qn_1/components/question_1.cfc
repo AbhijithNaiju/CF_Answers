@@ -1,6 +1,7 @@
 <cfcomponent>
-    <cffunction  name="valueFunction" returnType="any">
+    <cffunction  name="valueFunction" returnType="string">
     <cfargument name="number" type="any" required="true">
+    <cfset local.result = ''>
         <cfset local.value=arguments.number>
         <cfif local.value EQ 5>
             <cfset local.result="Very Good">

@@ -1,25 +1,27 @@
 <cfcomponent>
-    <cffunction  name="valueFunction" returnType="any">
-    <cfargument name="number" type="any" required="true">
+    <cffunction  name="valueFunction" returnType = "string">
+        <cfargument name="number" type="any" required = "true">
+        <cfset local.result = ''>
         <cfswitch expression=#arguments.number#>
-            <cfcase value=5>
-                <cfreturn "Very Good">
+            <cfcase value = 5>
+                <cfset local.strResult = "Very Good">
             </cfcase>
-           <cfcase value=4>
-                <cfreturn "Good">
+            <cfcase value = 4>
+                <cfset local.strResult = "Good">
             </cfcase>
-            <cfcase value=3>
-                <cfreturn "Fair">
+            <cfcase value = 3>
+                <cfset local.strResult = "Fair">
             </cfcase>
-            <cfcase value=2>
-                <cfreturn "OK">
+            <cfcase value = 2>
+                <cfset local.strResult = "OK">
             </cfcase>
-            <cfcase value=1>
-                <cfreturn "OK">
+            <cfcase value = 1>
+                <cfset local.strResult = "OK">
             </cfcase>
             <cfdefaultcase>
-                <cfreturn "Invalid number, Please select valid number(1 - 5)">
+                <cfset local.strResult = "Invalid number, Please select valid number(1 - 5)">
             </cfdefaultcase>
-        </cfswitch>  
+        </cfswitch>
+        <cfreturn local.strResult>
     </cffunction>
 </cfcomponent>
