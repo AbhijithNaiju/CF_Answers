@@ -22,11 +22,15 @@
             <input type="text" name="inputemail" placeholder="Enter your Email" class = "w-50">
             <input onclick="validateNumber()" type="submit">
         </div>
-        <cfif isDefined("form.inputText1")  && len(form.inputText1) gt 0 && isDefined("form.inputText2")  && len(form.inputText2) gt 0 >
+        <cfif isDefined("form.inputcaptcha")  && len(form.inputcaptcha) gt 0 && isDefined("form.inputemail")  && len(form.inputemail) gt 0 >
             <cfset newObject = createObject("component", "components.question_20")>
-            <cfset result = newObject.printDigits(mycaptcha,form.inputcaptcha,form. inputemail)> 
+            <cfset result = newObject.printDigits(mycaptcha,form.inputcaptcha,form.inputemail)> 
             <cfoutput>
-                #result#
+                <cfif result["captchaResult"] && result["emailResult"]>
+                    <span class="text-success">Success</span>
+                <cfelse>
+                   <span class="text-danger">Invalid captcha or email format</span>
+                </cfif>
             </cfoutput>
         <cfelse>
             <cfoutput> Please enter a valid number
