@@ -1,4 +1,3 @@
-<cfapplication name="myApplication" sessionmanagement=true>
 <html>
 <head>
 <title>Qn 8</title>

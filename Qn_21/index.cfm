@@ -21,9 +21,18 @@
                 </form>
 
                 <cfif isDefined("form.inputText") AND len(form.inputText)>
-                        <cfset newObject = createObject("component", "components.question_3")>
+<!---                         <cfset newObject = createObject("component", "components.question_3")> 
                         <cfset result = newObject.valueFunction(form.inputText)>
-                        #result# 
+                        #result# --->
+                        <cfmail
+                            from="abhijithnaiju@gmail.com"
+                            to="abhijithnaiju8@gmail.com"
+                            subject="Sample e-mail from ColdFusion"
+                            type="text">
+                            
+                            This is a sample e-mail message to show basic e-mail capability.
+
+                        </cfmail>
                 <cfelse>
                     <span>Please enter a valid number</span>
                 </cfif>

@@ -1,5 +1,4 @@
 <cfcomponent>
-    <cfset this.sessionmanagement = true>
     <cffunction  name="valueFunction" returnType="any">
         <cfargument  name="inputText1" type="any"> 
         <cfargument  name="inputText2" type="any">
