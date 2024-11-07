@@ -1,15 +1,16 @@
 <cfcomponent>
-    <cffunction  name="printDigits" returnType="any">
-        <cfargument  name="captcha" type="any"> 
-        <cfargument  name="captchaInput" type="any"> 
-        <cfargument  name="email" type="any"> 
-        <cfset inputemail = arguments.email>
+    <cffunction  name = "printDigits" returnType="struct">
+        <cfargument  name = "captcha" type="string"> 
+        <cfargument  name = "captchaInput" type="string"> 
+        <cfargument  name = "email" type="string"> 
+
         <cfif not Compare( arguments.captcha, arguments.captchainput )>
-            <cfset result["captchaResult"]=1>
+            <cfset local.result["captchaResult"] = 1>
         <cfelse>
-            <cfset result["captchaResult"]=0>
+            <cfset local.result["captchaResult"] = 0>
         </cfif>
-        <cfset result["emailResult"] = refind("^[0-9A-Za-z.'+_-]+@([0-9A-Za-z-]+\.)+[A-Za-z]+$", trim(arguments.email))>
-        <cfreturn result>
+
+        <cfset local.result["emailResult"] = refind("^[0-9A-Za-z.'+_-]+@([0-9A-Za-z-]+\.)+[A-Za-z]+$", trim(arguments.email))>
+        <cfreturn local.result>
     </cffunction>
 </cfcomponent>
