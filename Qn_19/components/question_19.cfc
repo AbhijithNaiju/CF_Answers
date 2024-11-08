@@ -1,5 +1,5 @@
 <cfcomponent>
-    <cffunction  name="cookieCounter" returnType="any">
+    <cffunction  name="cookieCounter" returnType="string">
         <cfif not structKeyExists(cookie,"visitsCounter4")>
             <cfcookie  name="visitscounter4" expires=1>
             <cfset cookie.visitsCounter4 = 0>

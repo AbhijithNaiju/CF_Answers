@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./style/index.css">
+    </head>
+    <cfoutput>
+        <body>
+            <main class="main_container">
+                <div class="header_div">
+                    <a href="">
+                        <img src="./Assets/Images/wflogo-padding.png">
+                    </a>
+                </div>
+                <div class="form_body">
+                    <div class="form_header">
+                        <p>Employment Application</p>
+                        <span>Infinity Box Inc.</span>
+                    </div>
+                    <form class="">
+                        <div class = "form_element d-flex flex-column">
+                            <label class="form_element_heading">Which position are you applying for? <span>*</span></label>
+                            <select name="positionApplying" id="">
+                                <option value=""></option>
+                                <option value="interface_designer">Interface Designer</option>
+                                <option value="software_engineer">Software Engineer</option>
+                                <option value="system_admin">System Administrator</option>
+                                <option value="office_manager">Office Manager</option>
+                            </select>
+                        </div>
+                        <div class = "form_element d-flex flex-column">
+                            <label class="form_element_heading">Are you willing to relocate? <span>*</span></label>
+                            <span>
+                                <input type="radio" value="yes" name="relocate">
+                                <label >Yes</label>
+                            </span>
+                            <span>
+                                <input type="radio" value="No" name="relocate">
+                                <label >No</label>
+                            </span>
+                        </div>
+                        <div class = "form_element date_select d-flex flex-column">
+                            <label class="form_element_heading">When can you start? <span>*</span></label>
+                            <input type="date">
+                        </div>
+                        <div class = "form_element portfolio_link  d-flex flex-column">
+                            <label class="form_element_heading">Portfolio Web Site</label>
+                            <input type="text" value="http://">
+                        </div>
+                        <div class = "form_element  d-flex flex-column">
+                            <label class="form_element_heading">Attach a Copy of Your Resume</label>
+                            <input type="file">
+                        </div>
+                        <div class = "form_element portfolio_link  d-flex flex-column">
+                            <label class="form_element_heading">Salary Requirements</label>
+                            <div class="d-flex salary">
+                                <div>
+                                    <label >Yes</label>
+                                    <input type="number" class="salary_dollars"> . 
+                                </div>
+                                <div>
+                                    <input type="number" class="salary_cents">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </main>
+            <script src="./script/index.js"></script>
+        </body>
+    </cfoutput>
+</html>

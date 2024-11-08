@@ -1,5 +1,5 @@
 <cfcomponent>
-    <cffunction  name="printDigits" returnType="any">
+    <cffunction  name="printDigits" returnType="struct">
         <cfargument  name="inputText1" type="any"> 
         <cfset mystruct3 = structNew()>
         <cfloop index="i" from="1" to="#arguments.inputText1#">

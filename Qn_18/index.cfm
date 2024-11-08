@@ -1,35 +1,33 @@
-<cfapplication name="myApplication" sessionmanagement=true>
 <html>
-<head>
-<title>Qn 17</title>
-<link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
-</head>
-<body class = "w-100" >
-    <form method="POST" class = " m-5 p-5  d-flex flex-column align-items-center border border-dark">
-        <div class = "border-bottom border-dark pb-2" >
-            17. Create a page with text box & submit button. User can enter numeric value in
-                the text box & click the submit button. If user entered non numeric character,
-                page should validate user input using JS.
-                While clicking on submit button, page should show up 1 to given input number,
-                odd numbers should be in blue, even numbers should be in green.
+    <head>
+        <title>Qn 18</title>
+        <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    </head>
+    <body class = "w-100" >
+        <cfoutput>
+        <div class = " m-5 p-5  d-flex flex-column align-items-center border border-dark">
+            <div class = "border-bottom border-dark pb-2" >
+                18. Need to create a query data type variable manually with out using cfquery tag.
+                    Need to use neccesary query functions.
+                    Query will have 3 columns
+                    ID - Number
+                    Name - String
+                    email - String
+                    This Query variable should have 3 rows of data.
+            </div>
+
+            <form method="POST" class = "w-100 m-4" >
+                <input name="submit" type="submit">
+            </form>
+
+            <cfif isDefined("form.submit")>
+                <cfset local.newObject = createObject("component", "components.question_18")>
+                <cfset local.result = local.newObject.printDigits()> 
+                <cfdump  var="#local.result#">
+            <cfelse>
+                 Please enter a valid number
+            </cfif>
         </div>
-        <div class = "w-100 m-4" >
-            <input type="text" name="inputText1" id="inputText1" placeholder="Enter the number" class = "w-50">
-            <input onclick="validateNumber()" type="submit">
-        </div>
-        <cfif isDefined("form.inputText1")  && len(form.inputText1) gt 0 >
-            <cfset newObject = createObject("component", "components.question_17")>
-            <cfset result = newObject.printDigits(form.inputText1)> 
-            <cfoutput>
-                <cfloop collection="#result#" item="i">
-                    <p style="color:#result[i]#;">#i#</p>
-                </cfloop>
-            </cfoutput>
-        <cfelse>
-            <cfoutput> Please enter a valid number
-            </cfoutput>
-        </cfif>
-    </form>
-    <script src="./JS/script.js"></script>
-</body>
+        </cfoutput>
+    </body>
 </html>

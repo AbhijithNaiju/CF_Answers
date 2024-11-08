@@ -18,19 +18,24 @@
 
                 <form method="POST" class = "w-100 m-4 " enctype="multipart/form-data">
                     <input type="text" name="imageName" placeholder=" Image name" class = "form-control" >
-                    <input type="text" name="descriptionText" placeholder="Description text"   class = "form-control"><br>
+                    <input type="text" name="descriptionText" placeholder="Description text"   class = "form-control" ><br>
                     <input type="file" name="inputImage" class="form-control">
                     <input name="submit" type="submit" class="btn btn-secondary w-100 my-1">
                 </form>
-
                 <cfif isDefined("form.submit")  && len(form.imageName) && len(form.descriptionText) && len(form.inputImage) gt 0>
-<!---                 <cffile  action="upload" destination="C:\ColdFusion2021\cfusion\wwwroot\CF_Answers\Qn_14\Assets" filefield="form.inputImage" nameconflict="makeunique"> --->
                     <cfset local.newObject = createObject("component", "components.question_14")>
                     <cfset local.result = local.newObject.printDigits(form.imageName,form.descriptionText,form.inputImage)> 
                     
                     <div class="w-100">
-                        <div class = "w-25" ><cfimage action="writeToBrowser" width="100%" source="#local.result['inputImage']#"></div>
-                        <a class = "w-50" href="./showImage.cfm">#local.result['imageName']#</a>
+                        <cfif structKeyExists(local.result,'inputImage') AND structKeyExists(local.result,'imageName') AND structKeyExists(local.result,'descriptionText')>
+                            <div class = "w-25" >
+                                <cfimage action="writeToBrowser" width="20" height="20" source="#local.result['inputImage']#">
+                            </div>
+                            <a class = "w-50" href="./showImage.cfm">#local.result['imageName']#</a>
+
+                            <cfelseif structKeyExists(local.result,'Error')>
+                                <span class = "text-danger" > #local.result['Error']# </span>
+                        </cfif>
                     </div>
                 <cfelse>
                     <span class = "text-danger" >Please fill the fields</span>
