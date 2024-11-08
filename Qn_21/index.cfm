@@ -29,8 +29,12 @@
                 </form>
 
                 <cfif isDefined("form.submit") AND len(form.babyName) AND len(form.emailId) AND len(form.birthdayWishes) AND len(form.greetingImage)>
+
+                    <cfset local.uploadLocation = expandPath("./Assets/Uploaded_Images")>
+                    <cffile action="upload" filefield="form.greetingImage" destination="#local.uploadLocation#"  nameconflict="makeunique" result="fileName">
                     <cfset local.newObject = createObject("component", "components.question_21")> 
-                    <cfset local.result = local.newObject.emailFunction(form.babyName,form.emailId,form.birthdayWishes,form.greetingImage)>
+                    <cfset local.result = local.newObject.emailFunction(form.babyName,form.emailId,form.birthdayWishes,fileName.serverfile)>
+
                     <span class = "text-success" > #local.result# </span>
                 <cfelse>
                     <span>Please fill the input fields</span>

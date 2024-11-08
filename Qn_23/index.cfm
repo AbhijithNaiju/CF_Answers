@@ -22,15 +22,15 @@
                         <p>Employment Application</p>
                         <span>Infinity Box Inc.</span>
                     </div>
-                    <form  method="post" class="">
+                    <form  method="post" class="" enctype="multipart/form-data">
                         <div class = "form_element d-flex flex-column">
                             <label class="form_element_heading">Which position are you applying for? <span>*</span></label>
                             <select name="positionApplying" id="positionApplying">
                                 <option value=""></option>
-                                <option value="interface_designer">Interface Designer</option>
-                                <option value="software_engineer">Software Engineer</option>
-                                <option value="system_admin">System Administrator</option>
-                                <option value="office_manager">Office Manager</option>
+                                <option value="Interface Designer">Interface Designer</option>
+                                <option value="Software Engineer">Software Engineer</option>
+                                <option value="System Administrator">System Administrator</option>
+                                <option value="Office Manager">Office Manager</option>
                             </select>
                         </div>
                         <span id="positionError" class="error_message"></span>
@@ -53,21 +53,21 @@
                         <span id="dateError" class="error_message"></span>
                         <div class = "form_element portfolio_link  d-flex flex-column">
                             <label class="form_element_heading">Portfolio Web Site</label>
-                            <input type="text" value="http://">
+                            <input type="text" name="portfolioLink" value="http://">
                         </div>
                         <div class = "form_element  d-flex flex-column">
                             <label class="form_element_heading">Attach a Copy of Your Resume</label>
-                            <input type="file">
+                            <input type="file" name="resumeImage">
                         </div>
                         <div class = "form_element salary_container  d-flex flex-column">
                             <label class="form_element_heading">Salary Requirements</label>
                             <div class="d-flex salary">
                                 <div>
                                     <label >$</label>
-                                    <input type="number" class="salary_dollars"> . 
+                                    <input type="number" class="salary_dollars" name="salaryDollars"> . 
                                 </div>
                                 <div>
-                                    <input type="number" class="salary_cents">
+                                    <input type="number" class="salary_cents" name="salaryCents">
                                 </div>
                             </div>
                         </div>
@@ -87,10 +87,10 @@
                         <span id="emailError" class="error_message"></span>
                         <div class = "form_element contact_number  d-flex flex-column">
                             <label class="form_element_heading">Phone<span>*</span></label>
-                            <input type="text" name="number" id="number">
+                            <input type="text" name="phone" id="number">
                         </div>
                         <div id="phoneError" class="error_message"></div>
-                        <input onclick="validate()" type="submit" name="submit">
+                        <input  onclick="validate()" type="submit" name="submit">
                     </form>
                     <div class="terms">
                         This site is protected by reCAPTCHA Enterprise and 
@@ -105,8 +105,21 @@
                 </div>
             </main>
             <cfif isDefined("form.submit")>
+            <cfset local.structFormElements = {}>
+                <cfloop collection="#form#" item="formitem">
+                    <cfset local.structFormElements[formitem]= form[formitem]>
+                </cfloop>
+                <cfset local.filelink = "">
+                <cfif len(form.resumeImage)>
+                    <cfset local.uploadLocation = expandPath("./Assets/Uploaded_Images")>
+                    <cffile action="upload"
+                            filefield="form.resumeImage"
+                            destination="#local.uploadLocation#"
+                            nameconflict="makeunique" result="fileUploadData">
+                    <cfset local.fileLink = "#local.uploadLocation#/#fileUploadData.SERVERFILE#">
+                </cfif>
                 <cfset local.myObj = createObject("component", "components.qn_23")>
-                <cfset local.result = local.myObj.insertValues()>
+                <cfset local.result = local.myObj.insertValues(local.structFormElements,local.fileLink)>
             </cfif>
             <script src="./script/index.js"></script>
         </body>
