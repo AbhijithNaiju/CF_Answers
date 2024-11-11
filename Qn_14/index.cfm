@@ -1,10 +1,11 @@
 <html>
     <head>
-        <title>Qn 14</title>
+        <title>Qn 14</title>        
+        <link rel="stylesheet" href="./css/style.css">
         <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
     </head>
     <body class = "w-100" >
-    <cfoutput>
+        <cfoutput>
             <div class = " m-5 p-5  d-flex flex-column align-items-center border border-dark">
                 <div class = "border-bottom border-dark pb-2" >
                 14. Create a form with Image name text box , description text area & Image upload
@@ -22,6 +23,7 @@
                     <input type="file" name="inputImage" class="form-control">
                     <input name="submit" type="submit" class="btn btn-secondary w-100 my-1">
                 </form>
+
                 <cfif isDefined("form.submit")  && len(form.imageName) && len(form.descriptionText) && len(form.inputImage) gt 0>
                     <cfset local.newObject = createObject("component", "components.question_14")>
                     <cfset local.result = local.newObject.printDigits(form.imageName,form.descriptionText,form.inputImage)> 
@@ -33,10 +35,11 @@
                             </div>
                             <a class = "w-50" href="./showImage.cfm">#local.result['imageName']#</a>
 
-                            <cfelseif structKeyExists(local.result,'Error')>
-                                <span class = "text-danger" > #local.result['Error']# </span>
+                        <cfelseif structKeyExists(local.result,'Error')>
+                            <span class = "text-danger" > #local.result['Error']# </span>
                         </cfif>
                     </div>
+
                 <cfelse>
                     <span class = "text-danger" >Please fill the fields</span>
                 </cfif>

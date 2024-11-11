@@ -1,14 +1,14 @@
 <cfcomponent>
-    <cfset result = "">
     <cffunction  name="printPattern" returnType="any">
-        <cfloop index="i" from="1" to="3">
+        <cfset local.arrayResult = ArrayNew(2)>
+        <cfset local.end = 3>
+        <cfloop index="i" from="1" to="#local.end#">
             <cfset k = 0>
-            <cfloop index="j" from="1" to="3">
-                <cfset result = result & (i+(3*k)) & " ">
+            <cfloop index="j" from="1" to="#local.end#">
+                <cfset local.arrayResult[i][j] = (i+(3*k))>
                 <cfset k++>
             </cfloop>
-            <cfset result = result & "<br>">
         </cfloop>
-        <cfreturn result>
+        <cfreturn local.arrayResult>
     </cffunction>
 </cfcomponent>

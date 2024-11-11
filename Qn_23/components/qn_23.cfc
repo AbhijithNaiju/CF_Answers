@@ -9,7 +9,7 @@
             <cfset local.salary = arguments.arrayFormElements["salaryDollars"]&"."&arguments.arrayFormElements["salaryCents"]>
         </cfif>
 
-        <cfquery name="formInput"  datasource="TESTDB">
+        <cfquery name="formInput"  datasource="TESTDS">
                     insert into employment(firstName ,
                                             lastName ,
                                             email ,
@@ -20,8 +20,7 @@
                                             portfolioLink ,
                                             resumeImage ,
                                             salary)
-                                    values(
-                                            '#arguments.arrayFormElements["firstName"]#',
+                                    values('#arguments.arrayFormElements["firstName"]#',
                                             '#arguments.arrayFormElements["lastName"]#',
                                             '#arguments.arrayFormElements["email"]#',
                                             '#arguments.arrayFormElements["phone"]#',
@@ -31,6 +30,7 @@
                                             '#arguments.arrayFormElements["portfolioLink"]#',
                                             '#local.resumeImage#',
                                             #local.salary#);
-                </cfquery>
+        </cfquery>
+        <cfreturn "Form submitted submitted successfully">
     </cffunction>
 </cfcomponent>

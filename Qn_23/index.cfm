@@ -3,7 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title></title>        
+        <link rel="stylesheet" href="./css/style.css">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
@@ -120,6 +121,7 @@
                 </cfif>
                 <cfset local.myObj = createObject("component", "components.qn_23")>
                 <cfset local.result = local.myObj.insertValues(local.structFormElements,local.fileLink)>
+                <spam>#local.result#</span>
             </cfif>
             <script src="./script/index.js"></script>
         </body>
