@@ -2,24 +2,25 @@
     <cffunction  name="valueFunction" returnType="any">
         <cfargument name="dobYour" type="any" required="true">
         <cfargument name="dobMother" type="any" required="true">
+        <cfset local.result = []>
         <cfset local.dobYour=arguments.dobYour>
         <cfset local.dobMother=arguments.dobMother>
-        <cfset ageYour = DateDiff('yyyy', dobyour, now())>
-        <cfset agemother = DateDiff('yyyy', dobmother, now())>
-        <cfset nextBirthdayYou = dobYour.setYear(year(now()))>
-        <cfset remainingDayYou = dayOfYear(nextBirthdayYou) - dayOfYear(now())>
-        <cfif remainingDayYou LT 0>
-            <cfset remainingDayYou=(365+remainingDayYou)>    
+        <cfset local.ageYour = DateDiff('yyyy', dobyour, now())>
+        <cfset local.agemother = DateDiff('yyyy', dobmother, now())>
+        <cfset local.nextBirthdayYou = dobYour.setYear(year(now()))>
+        <cfset local.remainingDayYou = dayOfYear(local.nextBirthdayYou) - dayOfYear(now())>
+        <cfif local.remainingDayYou LT 0>
+            <cfset local.remainingDayYou=(365+local.remainingDayYou)>    
         </cfif>
-        <cfset nextBirthdayMother = dobMother.setYear(year(now()))>
-        <cfset remainingDayMother = dayOfYear(nextBirthdayMother) - dayOfYear(now())>
-        <cfif remainingDayMother LT 0>
-            <cfset remainingDayMother=(365+remainingDayMother)>    
+        <cfset local.nextBirthdayMother = dobMother.setYear(year(now()))>
+        <cfset local.remainingDayMother = dayOfYear(local.nextBirthdayMother) - dayOfYear(now())>
+        <cfif local.remainingDayMother LT 0>
+            <cfset local.remainingDayMother=(365+local.remainingDayMother)>    
         </cfif>
-        <cfset result[1] = ageYour>
-        <cfset result[2] = agemother-ageYour>
-        <cfset result[3] = remainingDayYou>
-        <cfset result[4] = remainingDayMother>
-        <cfreturn result>
+        <cfset arrayAppend(local.result , local.ageYour)>
+        <cfset arrayAppend(local.result , local.agemother-local.ageYour)>
+        <cfset arrayAppend(local.result , local.remainingDayYou)>
+        <cfset arrayAppend(local.result , local.remainingDayMother)>
+        <cfreturn local.result>
     </cffunction>
 </cfcomponent>
