@@ -1,6 +1,7 @@
 <html>
     <head>
-        <title>Qn 12</title>
+        <title>Qn 12</title>        
+        <link rel="stylesheet" href="./css/style.css">
         <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
     </head>
     <body class = "w-100" >
@@ -18,7 +19,7 @@
 
             <form method="POST" class = "w-100 m-4" >
                 <input type="text" class = "form-control"  name="userInput" placeholder="Enter any number from 1 to 10" class = "w-50">
-                <input type="submit" class = "btn btn-primary"  name="submit">
+                <input type="submit" class = "btn btn-primary my-2"  name="submit">
             </form>
 
             <cfif isDefined("form.submit")  && len(form.userInput)>

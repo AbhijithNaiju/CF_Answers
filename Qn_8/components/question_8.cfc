@@ -1,5 +1,5 @@
 <cfcomponent>
-    <cffunction  name="valueFunction" returnType="any">
+    <cffunction  name="valueFunction" returnType="struct">
         <cfargument  name="inputText1" type="any"> 
         <cfargument  name="inputText2" type="any">
         <cfif not StructKeyExists(session,"myStruct") >

@@ -3,23 +3,14 @@
     border: 0;
 }
 body{
-    background-color: #649623;
-    display: flex;
+    background-color: #e4f3d1;
     justify-content: center;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-.main_container
-{
-    width: 48vw;
-    margin: 10px auto;
-}
-.header_div
-{
-    background-color: #99cc00;
 }
 .form_body
 {
     background-color: #fff;
+    margin-top: auto;
 }
 .form_body form
 {

@@ -19,34 +19,20 @@
     </cffunction>
 
     <cffunction  name="lastFive" returnType="struct">
-    <cfset local.lastFiveResult = structNew("ordered")>
+        <cfset local.lastFiveResult = []>
+        <cfset local.weekStyle = {"sun"="red",
+                                  "mon" ="green",
+                                  "tue" ="orange",
+                                  "wed" ="yellow",
+                                  "thu" ="bold black",
+                                  "fri" ="blue",
+                                  "sat" ="bold red"}>
+        <cfset local.lastFiveResult = structNew("ordered")>
         <cfloop index="i" from="-1" to="-5" step=-1>
             <cfset local.reqDate = now()+i>
-            <cfset local.weekCheck = dateFormat(local.reqDate,"ee")>
-
-            <cfif local.weekcheck EQ "sun">
-                <cfset local.printColor = "red"> 
-
-           <cfelseif local.weekcheck EQ "mon">
-                <cfset local.printColor = "green">
-
-            <cfelseif local.weekcheck EQ "tue">
-                <cfset local.printColor = "orange">
-
-            <cfelseif local.weekcheck EQ "wed">
-                <cfset local.printColor = "yellow">
-
-            <cfelseif local.weekcheck EQ   "thu">
-                <cfset local.printColor = "black">
-
-            <cfelseif local.weekcheck EQ "fri">
-                <cfset local.printColor = "blue">
-
-            <cfelseif local.weekcheck EQ "sat">
-                <cfset local.printColor = "red">
-            </cfif>
             <cfset local.lastFiveDate=dateFormat(local.reqDate,'dd-mm-yyyy-eeee')>
-            <cfset local.lastFiveResult[local.lastFiveDate] = local.printColor>
+            <cfset local.weekabbrevation = dateFormat(local.reqDate,'ee')>
+            <cfset local.lastFiveResult[local.lastFiveDate] = weekstyle[local.weekabbrevation]>
         </cfloop>
         <cfreturn local.lastFiveResult>
     </cffunction>

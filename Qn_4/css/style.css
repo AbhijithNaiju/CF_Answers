@@ -1,0 +1,33 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+.red
+{
+    color: red;
+}
+.green
+{
+    color: green;
+}
+.orange
+{
+    color: orange;
+}
+.yellow
+{
+    color: yellow;
+}
+.bold
+{
+    font-weight: bold;
+}
+.blue
+{
+    color: blue;
+}
+.black
+{
+    color: black;
+}

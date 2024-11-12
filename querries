@@ -1,0 +1,4 @@
+create table loginEmail(name varchar(20), Email varchar(30))
+
+create table userlogin(username varchar(20),password varchar(20))
+insert into userlogin values('Abhijith','abhijith'),('Adarsh','adarsh')

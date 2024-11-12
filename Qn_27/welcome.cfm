@@ -1,6 +1,7 @@
 <html>
     <head>
-        <title>Qn 27</title>
+        <title>Qn 27</title>        
+        <link rel="stylesheet" href="./css/style.css">
         <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
     </head>
     <body class = "w-100" >

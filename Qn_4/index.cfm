@@ -1,7 +1,9 @@
 <html>
     <head>
-        <title>Qn 4</title>
+        <title>Qn 4</title>        
+        <link rel="stylesheet" href="./css/style.css">
         <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./css/style.css">
     </head>
     <body class = "w-100" >
         <cfoutput>
@@ -33,7 +35,7 @@
                 </cfloop>
 
                 <cfloop collection = "#local.lastFive#" item = "i">
-                    <p style="color:#local.lastFive[i]#">
+                    <p class = "#local.lastFive[i]#">
                         #i#
                     </p>
                 </cfloop>

@@ -1,6 +1,7 @@
 <html>
     <head>
-        <title>Qn 9</title>
+        <title>Qn 9</title>        
+        <link rel="stylesheet" href="./css/style.css">
         <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
     </head>
     <body class = "w-100" >
@@ -28,9 +29,9 @@
                 </form>
 
                 <cfif isDefined("form.inputText1")  && len(form.inputText1) gt 0 && len(form.inputText2) gt 0>
-                    <cfset newObject = createObject("component", "components.question_9")>
-                    <cfset result = newObject.valueFunction(form.inputText1,form.inputText2)> 
-                        <cfdump  var="#result#">
+                    <cfset local.newObject = createObject("component", "components.question_9")>
+                    <cfset local.result = local.newObject.valueFunction(form.inputText1,form.inputText2)> 
+                        <cfdump  var="#local.result#">
                 <cfelse>
                     Please enter 2 valid strings  
                 </cfif>

@@ -1,6 +1,7 @@
 <html>
     <head>
-        <title>Qn 27</title>
+        <title>Qn 27</title>        
+        <link rel="stylesheet" href="./css/style.css">
         <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
     </head>
     <body class = "w-100" >
@@ -16,9 +17,9 @@
                 </div>
 
                 <form method="POST" class = "w-100 m-4" >
-                    <input type="text" name="userName" placeholder="Enter User Name" class = "w-50">
-                    <input type="password" name="password" placeholder="Enter Your Password" class = "w-50">
-                    <input name="submit" type="submit">
+                    <input type="text" name="userName" placeholder="Enter User Name" class ="form-control">
+                    <input type="password" name="password" placeholder="Enter Your Password" class ="form-control">
+                    <input name="submit" class = "btn btn-primary   " type="submit">
                 </form>
 
                 <cfif isDefined("form.submit")  && len(form.userName)  && len(form.password)>

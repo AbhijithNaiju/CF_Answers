@@ -2,33 +2,38 @@
 2 - Done
 3 - Done
 4 - Done
-5 - Done
-6 - Review 
-7 - Edit in logic 
-8 - Review 
-9 - Review 
-10 - Review 
-11 - Review 
-12 - Review
-13 - Review 
+5 - Done 
+6 - Done 
+7 - Done 
+8 - Done 
+9 - Done Partially
+10 - Done Partially
+11 - Done Partially 
+12 - Done Partially
+13 - Done Partially 
 14 - Review - Extention isn't cheched(Use object returned from cfile upload to check the input file)
            - Edit the code with image upload method in 21st qn
-15 - Review 
-16 - Review 
-17 - Review 
+15 - Done Partially 
+16 - Done Partially 
+17 - Done Partially 
 18 - Review
 19 - Review 
 20 - Review 
 21 - Review
 22 - Review
 23 - Pending - Background color on Focus
-            - Background oon error
-            - Extra div on error
-            - Portfolio link validation
-            - date input
-            - phone number input
-24 - 
-25 -
-26 -
-27 - Pending - Connect to database remaining
+             - Background on error
+             - Extra div on error
+             - Portfolio link validation
+             - date input
+             - phone number input
+24 - Review
+25 - Started
+26 - 
+27 - Review
 28 - 
+
+
+
+**rename variables with abbr of its type
+**Edit the session
