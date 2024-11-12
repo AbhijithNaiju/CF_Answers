@@ -23,8 +23,8 @@
                 </form>
 
                 <cfif isDefined("form.submit")  && len(form.userName)  && len(form.password)>
-                    <cfset newObject = createObject("component", "components.question_27")>
-                    <cfset local.result = newObject.printDigits(form.userName,form.password)> 
+                    <cfset local.newObject = createObject("component", "components.question_27")>
+                    <cfset local.result = local.newObject.printDigits(form.userName,form.password)> 
 
                     <cfif structKeyExists(local, "result")>
                         <span class = "text-danger">#local.result#</span>

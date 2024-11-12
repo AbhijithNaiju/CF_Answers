@@ -1,0 +1,8 @@
+.display_none
+{
+	display:none;
+}
+.active
+{
+	display:unset;
+}

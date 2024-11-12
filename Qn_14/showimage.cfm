@@ -13,12 +13,12 @@
     <body >
         <cfoutput>
             <cfif structKeyExists(session,"structImage")>
-                <div class = "w-100 d-flex flex-column align-items-center">
+                <div class = "w-100 d-flex flex-column align-items-center border border-dark" >
                     <div class = "imageContainer" >
-                        <cfimage action="writeToBrowser" width="100%" height="100%" source="#session.structImage['inputImage']#">
+                        <img src="./Assets/Uploaded_Images/#session.structImage['inputImage']#" width="100%" height="100%" > 
                     </div>
-                    <div>#session.structImage['imageName']#</div>
-                    <div>#session.structImage['descriptionText']#</div>
+                    <div>Name :     #session.structImage['imageName']#</div>
+                    <div>Description : #session.structImage['descriptionText']#</div>
                 </div>
             <cfelse>
                 <div class = "text-danger">Error</div> 
