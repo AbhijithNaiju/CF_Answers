@@ -16,7 +16,6 @@
     </cffunction>
 
     <cffunction  name="logout" access="remote">
-<!---         structDelete(session, " --->
         <cfset sessionInvalidate()>
         <cflocation  url="../index.cfm" addToken = "no">
     </cffunction>
