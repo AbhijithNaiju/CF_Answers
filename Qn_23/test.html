@@ -57,8 +57,9 @@
                         <span id="dateError" class="error_message"></span>
                         <div class = "form_element portfolio_link  d-flex flex-column">
                             <label class="form_element_heading">Portfolio Web Site</label>
-                            <input type="text" name="portfolioLink" value="http://" class = "input_field" >
+                            <input type="text" name="portfolioLink" id="portfolioLink" value="http://" class = "input_field" >
                         </div>
+                        <span id="portfolioLinkError" class="error_message"></span>
                         <div class = "form_element  d-flex flex-column">
                             <label class="form_element_heading">Attach a Copy of Your Resume</label>
                             <input type="file" name="resumeImage" class = "input_field" >
@@ -98,7 +99,7 @@
                             </div>
                         </div>
                         <div id="phoneError" class="error_message"></div>
-                        <input  onclick="validate()" type="submit" name="submit" class = "submit_button" >
+                        <input  onclick="validate()" type="button" name="submit" class = "submit_button" >
                     </form>
                     <div class="terms">
                         This site is protected by reCAPTCHA Enterprise and 
@@ -111,26 +112,9 @@
                     </a>
                     <span class="bottom_description">See how easy it is to <a href=""> create a form.</a></a></span>
                 </div>
-                <cfif isDefined("form.submit")>
-                <cfset local.structFormElements = {}>
-                    <cfloop collection="#form#" item="formitem">
-                        <cfset local.structFormElements[formitem]= form[formitem]>
-                    </cfloop>
-                    <cfset local.filelink = "">
-                    <cfif len(form.resumeImage)>
-                        <cfset local.uploadLocation = expandPath("./Assets/Uploaded_Images")>
-                        <cffile action="upload"
-                                filefield="form.resumeImage"
-                                destination="#local.uploadLocation#"
-                                nameconflict="makeunique" result="fileUploadData">
-                        <cfset local.fileLink = "#local.uploadLocation#/#fileUploadData.SERVERFILE#">
-                    </cfif>
-                    <cfset local.myObj = createObject("component", "components.qn_23")>
-                    <cfset local.result = local.myObj.insertValues(local.structFormElements,local.fileLink)>
-                </cfif>
             </main>
             <script src="../Jquery/jquery-3.7.1.js"></script>
-            <script src="./script/index.js"></script>
+            <script src="./script/script.js"></script>
         </body>
     </cfoutput>
 </html>

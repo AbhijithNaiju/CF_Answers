@@ -8,6 +8,7 @@
         <cfif len(arguments.arrayFormElements["salaryDollars"]) OR len(arguments.arrayFormElements["salaryCents"])>
             <cfset local.salary = arguments.arrayFormElements["salaryDollars"]&"."&arguments.arrayFormElements["salaryCents"]>
         </cfif>
+        <cfset local.phoneNumber = arguments.arrayFormElements["phone1"]&arguments.arrayFormElements["phone2"]&arguments.arrayFormElements["phone3"]>
 
         <cfquery name="formInput"  datasource="TESTDS">
                     insert into employment(firstName ,
@@ -23,7 +24,7 @@
                                     values('#arguments.arrayFormElements["firstName"]#',
                                             '#arguments.arrayFormElements["lastName"]#',
                                             '#arguments.arrayFormElements["email"]#',
-                                            '#arguments.arrayFormElements["phone"]#',
+                                            '#local.phoneNumber#',
                                             '#arguments.arrayFormElements["positionApplying"]#',
                                             '#arguments.arrayFormElements["relocate"]#',
                                             '#arguments.arrayFormElements["startDate"]#',
@@ -31,6 +32,6 @@
                                             '#local.resumeImage#',
                                             #local.salary#);
         </cfquery>
-        <cfreturn "Form submitted submitted successfully">
+        <cflocation  url="success.cfm" addtoken="no">
     </cffunction>
 </cfcomponent>

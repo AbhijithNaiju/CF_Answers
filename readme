@@ -6,33 +6,31 @@
 6 - Done 
 7 - Done 
 8 - Done 
-9 - Done Partially
-10 - Done Partially
-11 - Done Partially 
-12 - Done Partially
-13 - Done Partially 
+9 - Review Done Partially
+10 - Review Done Partially
+11 - Review Done Partially 
+12 - Review Done Partially
+13 - Review Done Partially 
 14 - Review
-15 - Done Partially 
-16 - Done Partially 
-17 - Done Partially 
+15 - Review Done Partially 
+16 - Review Done Partially 
+17 - Review Done Partially 
 18 - Review
 19 - Review 
 20 - Review 
 21 - Review
 22 - Review
-23 - Pending - Background color on Focus
-             - Background on error
-             - Extra div on error
-             - Portfolio link validation
+23 - Review  - Portfolio link validation
              - date input
-             - phone number input
 24 - Review
-25 - Started
-26 - 
+25 - Review
+26 - Review
 27 - Review
-28 - 
+28 - Review
 
 
 
 **rename variables with abbr of its type
 **Edit the session
+
+23,25
