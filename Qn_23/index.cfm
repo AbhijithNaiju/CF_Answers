@@ -57,8 +57,9 @@
                         <span id="dateError" class="error_message"></span>
                         <div class = "form_element portfolio_link  d-flex flex-column">
                             <label class="form_element_heading">Portfolio Web Site</label>
-                            <input type="text" name="portfolioLink" value="http://" class = "input_field" >
+                            <input type="text" name="portfolioLink" id="portfolioLink" value="http://" class = "input_field" >
                         </div>
+                        <span id="portfolioLinkError" class="error_message"></span>
                         <div class = "form_element  d-flex flex-column">
                             <label class="form_element_heading">Attach a Copy of Your Resume</label>
                             <input type="file" name="resumeImage" class = "input_field" >
@@ -130,7 +131,7 @@
                 </cfif>
             </main>
             <script src="../Jquery/jquery-3.7.1.js"></script>
-            <script src="./script/index.js"></script>
+            <script src="./script/script.js"></script>
         </body>
     </cfoutput>
 </html>

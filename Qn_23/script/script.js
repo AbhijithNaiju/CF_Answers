@@ -15,6 +15,7 @@ function validate()
     let phoneNumber=number1+number2+number3;
     var name_check=/[^a-zA-Z0-9\s]/;
 	var email_match=/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    var match_space=/\s/;
 
     if(firstName.length==0)
 	{
@@ -53,6 +54,10 @@ function validate()
     else if(phoneNumber.length!=10)
     {
         phoneError = "Phone number must be 10 letters";
+    }
+    else if(match_space.test(phoneNumber))
+    {
+        phoneError = "Phone should not contain any whitespace";
     }
     else
     {
@@ -101,6 +106,74 @@ function validate()
     if(nameError != "" || emailError != "" || phoneError != "" || dateError != "" || relocateError != "" || positionError != "" || portfolioLinkError != "")
     {
         event.preventDefault();
+        $(".error_div").removeClass("display_none");
+    }
+    else
+    {
+        $(".error_div").addClass("display_none");
+    }
+
+    if(nameError=="")
+    {
+        $("#nameError").prev().removeClass("error_element");
+    }
+    else
+    {
+        $("#nameError").prev().addClass("error_element");
+    }
+
+    if(emailError=="")
+    {
+        $("#emailError").prev().removeClass("error_element");
+    }
+    else
+    {
+        $("#emailError").prev().addClass("error_element");
+    }
+
+    if(phoneError=="")
+    {
+        $("#phoneError").prev().removeClass("error_element");
+    }
+    else
+    {
+        $("#phoneError").prev().addClass("error_element");
+    }
+
+    if(dateError=="")
+    {
+        $("#dateError").prev().removeClass("error_element");
+    }
+    else
+    {
+        $("#dateError").prev().addClass("error_element");
+    }
+
+    if(relocateError=="")
+    {
+        $("#relocateError").prev().removeClass("error_element");
+    }
+    else
+    {
+        $("#relocateError").prev().addClass("error_element");
+    }
+
+    if(positionError=="")
+    {
+        $("#positionError").prev().removeClass("error_element");
+    }
+    else
+    {
+        $("#positionError").prev().addClass("error_element");
+    }
+
+    if(portfolioLinkError=="")
+    {
+        $("#portfolioLinkError").prev().removeClass("error_element");
+    }
+    else
+    {
+        $("#portfolioLinkError").prev().addClass("error_element");
     }
 }
 
@@ -125,4 +198,4 @@ function isUrlValid(string) {
     } catch (err) {
       return false;
     }
-   }
+}
