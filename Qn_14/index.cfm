@@ -24,14 +24,22 @@
                     <input name="submit" type="submit" class="btn btn-secondary w-100 my-1">
                 </form>
 
-                <cfif isDefined("form.submit")  && len(form.imageName) && len(form.descriptionText) && len(form.inputImage) gt 0>
+                <cfif isDefined("form.submit")  && len(form.imageName) && len(form.descriptionText) && len(form.inputImage)>
+
+                    <cfset local.uploadLocation = expandPath("./Assets/Uploaded_Images")>
+                    <cffile action="upload"
+                            filefield="form.inputImage"
+                            destination="#local.uploadLocation#"
+                            nameconflict="makeunique"
+                            result="fileName">
+
                     <cfset local.newObject = createObject("component", "components.question_14")>
-                    <cfset local.result = local.newObject.printDigits(form.imageName,form.descriptionText,form.inputImage)> 
-                    
+                    <cfset local.result = local.newObject.printDigits(form.imageName,form.descriptionText,fileName.serverfile)> 
+
                     <div class="w-100">
-                        <cfif structKeyExists(local.result,'inputImage') AND structKeyExists(local.result,'imageName') AND structKeyExists(local.result,'descriptionText')>
+                        <cfif structKeyExists(local.result,'inputImage') AND structKeyExists(local.result,'imageName')>
                             <div class = "w-25" >
-                                <cfimage action="writeToBrowser" width="20" height="20" source="#local.result['inputImage']#">
+                                <img src="./Assets/Uploaded_Images/#local.result['inputImage']#" width="20" height="20" >                            
                             </div>
                             <a class = "w-50" href="./showImage.cfm">#local.result['imageName']#</a>
 
