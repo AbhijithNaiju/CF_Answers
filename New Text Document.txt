@@ -1,0 +1,17 @@
+CREATE TABLE employment (
+    firstname VARCHAR(50),
+    lastname VARCHAR(50),
+    email VARCHAR(100),
+    phone VARCHAR(50),
+    positionapplying VARCHAR(50),
+    relocate VARCHAR(50),
+    startdate VARCHAR(50),
+    portfolioLink VARCHAR(50),
+    resumeImage VARCHAR(200),
+    salary VARCHAR(50)
+);
+drop table employment
+
+select  from userlogin
+
+insert into userlogin values('Abhijith','03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');

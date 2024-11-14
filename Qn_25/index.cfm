@@ -22,19 +22,26 @@
                         <label class="form_element_heading">Enter the text<span>*</span></label>
                         <textarea  name="inputtext" id="inputtext" placeholder="Text" class="form-control"></textarea>
                     </div>
+
                     <span id="nameError" class="error_message"></span>
 
                     <input  type="submit" id="submitButton" name="submit" class="btn btn-primary" >
                     <a href="./wordcount.cfm" class = "btn btn-secondary" >Word Count</a>
                 </form>
 
-                <cfif isDefined("form.submit") AND len(form.inputtext)>
+                <cfif isDefined("form.submit") AND len(trim(form.inputtext))>
+
                     <cfset local.myObj = createObject("component", "components.qn_25")>
                     <cfset local.result = local.myObj.insertValues(form.inputtext)>
-                    <div class = "text-center text-success">#local.result#</div>
+
+                    <cfif structKeyExists(local.result, "success")>
+                        <div class = "text-center text-success">#local.result["success"]#</div>
+                    </cfif>
+
                 <cfelseif isDefined("form.submit")>
                     <div class = "text-center text-danger">Please enter the text</div>
                 </cfif>
+
             </div>
         </body>
     </cfoutput>

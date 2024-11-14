@@ -1,4 +1,5 @@
 <cfcomponent>
+    <cfset this.datasource = "TESTDS">
     <cfset this.sessionManagement = true>
     <cffunction name="onRequest" >
 
@@ -8,12 +9,15 @@
 
         <cfif arrayFind(local.excludedFiles,arguments.requestedpage)>
             <cfinclude  template="#arguments.requestedpage#">
-         <cfelse>
+        <cfelse>
+
             <cfif structKeyExists(session, "userId")>
                 <cfinclude  template="#arguments.requestedpage#">
             <cfelse>
                 <cflocation  url="login.cfm" addtoken="no">
             </cfif>
-         </cfif>
+
+        </cfif>
+
     </cffunction>
 </cfcomponent>

@@ -2,7 +2,7 @@ function printOutput(printLocation,printValue)
 {
 	document.getElementById(printLocation).innerHTML = printValue;
 }
-function validate()
+function validate(event)
 {
     let positionApplying=document.getElementById("positionApplying").value;
     let firstName=document.getElementById("firstName").value;
@@ -16,6 +16,13 @@ function validate()
     var name_check=/[^a-zA-Z0-9\s]/;
 	var email_match=/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     var match_space=/\s/;
+    let nameError ="";
+    let emailError ="";
+    let phoneError ="";
+    let dateError ="";
+    let positionError ="";
+    let relocateError ="";
+    let portfolioLinkError ="";
 
     if(firstName.length==0)
 	{
