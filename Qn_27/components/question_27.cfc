@@ -5,18 +5,17 @@
         <cfargument  name = "password" type="string">
 
         <cfset local.structResult = structNew()>
-<!---         <cfset local.hashedPassword = hash(arguments.password, "SHA-256")> --->
-<!---         <cfdump  var="#local.hashedPassword#"> --->
+        <cfset local.hashedPassword = hash(arguments.password, "SHA-256")> 
 
         <cfquery name="usercheck">
-            SELECT count('userName') 
-            AS userCount 
+            SELECT userName
             FROM userlogin 
             WHERE username=<cfqueryparam value='#arguments.userName#' cfsqltype="cf_sql_varchar">
-            AND password=<cfqueryparam value='#arguments.password#' cfsqltype="cf_sql_varchar">
+            AND password=<cfqueryparam value='#local.hashedPassword#' cfsqltype="cf_sql_varchar">
         </cfquery>
 
-        <cfif usercheck.userCount>
+        <cfif usercheck.recordcount>
+
             <cfset session.userName = arguments.userName>
             <cflocation url = "./welcome.cfm" addToken = "no">
             <cfset local.structResult["error"] = "">
@@ -25,12 +24,13 @@
             <cfset local.structResult["error"] = "Please enter valid username and password">
         </cfif> 
 
-        <cfreturn local.structResult>   
+        <cfreturn local.structResult>
 
     </cffunction>
 
-    <cffunction  name="logout" access="remote">
-        <cfset sessionInvalidate()>
+    <cffunction  name="logout" access="remote" retuntype="boolean">
+        <cfset  structClear(session)>
+        <cfreturn true>
     </cffunction>
 
 </cfcomponent>

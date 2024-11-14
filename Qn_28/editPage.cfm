@@ -19,7 +19,6 @@
                     <a href="" class="logo">
                         <img src="./Assets/Images/Gmail-Logo.webp" alt="Image not found">
                     </a>
-                    <a href="./components/question_28.cfc?method=logout" class="btn btn-danger logout">Logout</a>
                 </div>
 
                 <form method="post" class="main_body">

@@ -6,21 +6,24 @@
         <cfargument  name = "userRole" type="string"> 
 
         <cfset local.result = "">
+        <cfset local.hashedPassword = hash(arguments.password, "SHA-256")> 
 
         <cfquery name="userNameCheck">
             SELECT count('username') 
             AS userCount 
-            FROM tableUser 
-            WHERE username='#arguments.userName#';
+            FROM userTable 
+            WHERE username=<cfqueryparam value='#arguments.userName#' cfsqltype="cf_sql_varchar">;
         </cfquery>
 
         <cfif userNameCheck.userCount>
             <cfset local.result = "Username already exists">
         <cfelse>
 
-            <cfquery name="formInput"  >
-                INSERT INTO tableUser(userName ,password ,role)
-                VALUES('#arguments.userName#','#arguments.password#','#arguments.userRole#');
+            <cfquery name="formInput">
+                INSERT INTO userTable(userName ,password ,roleId)
+                VALUES(<cfqueryparam value='#arguments.userName#' cfsqltype="cf_sql_varchar">,
+                <cfqueryparam value='#local.hashedPassword#' cfsqltype="cf_sql_varchar">,
+                <cfqueryparam value='#arguments.userRole#' cfsqltype="cf_sql_varchar">);
             </cfquery>
 
             <cfset local.result = "Account Created Sucessfully">
@@ -37,26 +40,26 @@
         <cfargument  name = "userRole" type="string"> 
 
         <cfset local.result = "">
+        <cfset local.hashedPassword = hash(arguments.password, "SHA-256")> 
 
         <cfquery name="usercheck"  >
             SELECT userId 
-            FROM tableUser 
-            WHERE username='#arguments.userName#' 
-            AND password='#arguments.password# ' 
-            AND role='#arguments.userRole# ';
+            FROM userTable 
+            WHERE username=<cfqueryparam value='#arguments.userName#' cfsqltype="cf_sql_varchar"> 
+            AND password=<cfqueryparam value='#local.hashedPassword#' cfsqltype="cf_sql_varchar"> 
+            AND roleId=<cfqueryparam value='#arguments.userRole#' cfsqltype="cf_sql_varchar">;
         </cfquery>
 
         <cfif usercheck.userId EQ ''>
             <cfset local.error = "Please enter a valid username and password">
         <cfelse>
+        <cfset session.userId = usercheck.userId>
 
-            <cfif arguments.userRole EQ "Admin" OR arguments.userRole EQ "Editor">
-                <cfset session.adminId = usercheck.userId>
-                <cflocation url = "./admin.cfm" addToken = "no">
-            <cfelse>
-                <cfset session.userId = usercheck.userId>
-                <cflocation url = "./user.cfm" addToken = "no">
-            </cfif>
+        <cfif arguments.userRole EQ "Admin" OR arguments.userRole EQ "Editor">
+            <cflocation url = "./admin.cfm">
+        <cfelse>
+            <cflocation url = "./user.cfm">
+        </cfif>
 
         </cfif>
 
@@ -71,8 +74,8 @@
         <cfquery name="userNameCheck" >
             SELECT count('username') 
             AS userCount 
-            FROM tableUser 
-            WHERE username='#arguments.userName#';
+            FROM userTable 
+            WHERE username=<cfqueryparam value='#arguments.userName#' cfsqltype="cf_sql_varchar">;
         </cfquery>
 
         <cfif userNameCheck.userCount>
@@ -81,10 +84,10 @@
 
     </cffunction>
 
-    <cffunction  name="logout" access="remote">
+    <cffunction  name="logout" access="remote" retuntype="boolean">
 
-        <cfset sessionInvalidate()>
-        <cflocation  url="../login.cfm" addToken = "no">
+        <cfset structClear(session)>
+        <cfreturn true>
 
     </cffunction>
 
@@ -105,24 +108,23 @@
         <cfquery name="pagelist" >
             SELECT pageId,pagename,pagedescs 
             FROM tablepage 
-            WHERE pageId='#arguments.pageId#';
+            WHERE pageId=<cfqueryparam value='#arguments.pageId#' cfsqltype="cf_sql_varchar">;
         </cfquery>
         
         <cfreturn pagelist>
     </cffunction>
 
 
-    <cffunction  name="deletePage" returntype="String">
+    <cffunction  name="deletePage" returntype="boolean" access="remote">
 
         <cfargument  name="pageId" type="string">
-
+        
         <cfquery name="pagelist" >
             DELETE FROM tablepage 
-            WHERE pageId='#arguments.pageId#'
+            WHERE pageId=<cfqueryparam value='#arguments.pageId#' cfsqltype="cf_sql_varchar">;
         </cfquery>
 
-        <cfset local.result = "Page deleted successfully">
-        <cfreturn local.result>
+        <cfreturn true>
 
     </cffunction>
 
@@ -133,10 +135,11 @@
 
         <cfquery name="insertQuery" >
             INSERT INTO tablepage(pagename,pagedescs) 
-            VALUES('#arguments.pageName#','#arguments.pageDescription#')
+            VALUES( <cfqueryparam value='#arguments.pageName#' cfsqltype="cf_sql_varchar">,
+                    <cfqueryparam value='#arguments.pageDescription#' cfsqltype="cf_sql_varchar">)
         </cfquery>
 
-        <cflocation url = "./admin.cfm" addToken = "no">
+        <cflocation url = "./admin.cfm">
 
     </cffunction>
 
@@ -147,10 +150,11 @@
 
         <cfquery name="insertQuery" >
             UPDATE tablepage 
-            SET pagename='#arguments.pageName#', pagedescs='#arguments.pageDescription#' 
-            WHERE pageId='#arguments.pageID#'
+            SET pagename=<cfqueryparam value='#arguments.pageName#' cfsqltype="cf_sql_varchar">,
+                pagedescs=<cfqueryparam value='#arguments.pageDescription#' cfsqltype="cf_sql_varchar"> 
+            WHERE pageId=<cfqueryparam value='#arguments.pageID#' cfsqltype="cf_sql_varchar">
         </cfquery>
 
-        <cflocation url = "./admin.cfm" addToken = "no">
+        <cflocation url = "./admin.cfm">
     </cffunction>
 </cfcomponent>

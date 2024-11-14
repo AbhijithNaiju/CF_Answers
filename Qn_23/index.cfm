@@ -165,7 +165,7 @@
             </main>
 
             <script src="../Jquery/jquery-3.7.1.js"></script>
-            <script src="./script/script.js"></script>
+            <script src="./script/index.js"></script>
         </body>
     </cfoutput>
 </html>

@@ -17,7 +17,7 @@
 					<a href="" class="logo">
 						<img src="./Assets/Images/Gmail-Logo.webp" alt="Image not found">
 					</a>
-					<a href="./components/question_28.cfc?method=logout" class="btn btn-danger logout">Logout</a>
+					<button onclick="logout()" class="btn btn-danger logout">Logout</button>
 				</div>
 				<div class="main_body">
 					<div id="listContainer">
@@ -34,7 +34,7 @@
 			</div>
             <script src="../Jquery/jquery-3.7.1.js"></script>
             <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
-            <script src="js/accordian.js"></script>
+            <script src="js/index.js"></script>
         </cfoutput>
     </body>
 </html>

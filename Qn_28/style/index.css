@@ -23,10 +23,16 @@ body{
 {
     width: 10%;
     height: 10%;
+    text-decoration: none;
 }
 .logo img
 {
     width: 100%;
+}
+.logo div
+{
+    color: #333;
+    font-size: 32px;
 }
 .logout
 {

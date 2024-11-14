@@ -47,6 +47,10 @@ function validate()
                     submitButton.disabled = false ;
                     printOutput("emailError","");
                 }
+            },
+            Error:function(){
+                submitButton.disabled = true ;
+                printOutput("emailError","Error");
             }
         });
     }

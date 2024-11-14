@@ -7,7 +7,7 @@
         <cfset local.structResult = structNew()>
         <cfset local.resumeImage = arguments.fileLink>
         <cfset local.salary = 0>
-        <cfset local.phoneNumber = arguments.arrayFormElements["phone1"]&arguments.arrayFormElements["phone2"]&arguments.arrayFormElements["phone3"]>
+        <cfset local.phoneNumber = arguments.arrayFormElements["phone1"] AND arguments.arrayFormElements["phone2"] AND arguments.arrayFormElements["phone3"]>
 
         <cfif len(arguments.arrayFormElements["salaryDollars"]) OR len(arguments.arrayFormElements["salaryCents"])>
             <cfset local.salary = arguments.arrayFormElements["salaryDollars"]&"."&arguments.arrayFormElements["salaryCents"]>
