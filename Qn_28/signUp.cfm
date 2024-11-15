@@ -9,6 +9,8 @@
 	</head>
 	<body class="d-flex">
 		<cfoutput>
+			<cfset local.newObject = createObject("component", "components.question_28")>
+			<cfset local.queryRoles = local.newObject.getRoles()>
 			<form method="POST">
 				<div class = "form_group" >
 					<label for="user_name">User Name</label>
@@ -31,9 +33,9 @@
 				<div class = "form_group" >
 					<label for="userRole">Select Role</label>
 					<select name="userRole" id="userRole" class = "form-control" >
-						<option value="User">User</option>
-						<option value="Editer">Editer</option>
-						<option value="Admin">Admin</option>
+						<cfloop query="#local.queryRoles#">
+							<option value="#queryRoles.roleId#">#queryRoles.roleName#</option>
+						</cfloop>
 					</select>
 				</div>
 
@@ -45,10 +47,20 @@
 				</div>
 
 				<cfif isDefined("form.submitBtn")>
-					<cfset local.newObject = createObject("component", "components.question_28")>
+
 					<cfset local.result = local.newObject.userSignup(form.userName,form.password,form.userRole)>
-					<cfif structKeyExists(local, "result")>
-						<div class = "text-center text-danger" >#local.result#</div>
+
+					<cfif structKeyExists(local.result, "error")>
+						<div class = "text-center text-danger" >#local.result["error"]#</div>
+
+					<cfelseif structKeyExists(local.result, "success")>
+						<div class = "text-center text-success" >#local.result["success"]#</div>
+						<cfset local.loginResult = local.newObject.userLogin(form.userName,form.password)>
+
+						<cfif structKeyExists(local.loginResult, "error")>
+							<div class = "text-center text-danger" >#local.loginResult["error"]#</div>
+						</cfif>
+
 					</cfif>
 				</cfif>
 			</form>

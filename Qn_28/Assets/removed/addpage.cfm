@@ -22,12 +22,17 @@
                     <input type="text" name="pageName" required class="form-control my-2" placeholder="Page name">
                     <input type="text" name="pageDescription" required class="form-control" placeholder="Page Description">
                     <input type="submit" name="addPage" value="Add Page" class="btn btn-secondary w-100 my-2">
+
+                    <cfif structKeyExists(form, "addPage")>
+                        <cfset local.newObject = createObject("component", "components.question_28")>
+                        <cfset local.result = local.newObject.addPageToTable(form.pageName,form.pageDescription)>
+                        <cfif structKeyExists(local.result, "error")>
+                            <div class = "text-center text-danger fw-bold" >#local.result["error"]#</div>
+                        </cfif>
+                    </cfif>
+
                 </form>
 
-                <cfif structKeyExists(form, "addPage")>
-                    <cfset local.newObject = createObject("component", "components.question_28")>
-                    <cfset local.result = local.newObject.addPageToTable(form.pageName,form.pageDescription)>
-                </cfif>
 
             </div>
 

@@ -25,7 +25,7 @@
 							<h3 class="page_heading">#local.pageListResult.pagename#</h3>
 							<div class = "display_none" >
 								<p>
-									#local.pageListResult.pagedescs#
+									#local.pageListResult.pagedesc#
 								</p>
 							</div>
 						</cfloop>

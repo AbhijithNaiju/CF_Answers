@@ -13,7 +13,7 @@
 		<cfoutput>
 
 			<cfset local.newObject = createObject("component", "components.question_28")>
-			<cfset local.pageListResult = local.newObject.getpages()>
+			<cfset local.pageListResult = local.newObject.getAdminPages()>
 
 			<div class="main">
 
@@ -27,8 +27,9 @@
 				<div class="main_body">
 					<div class="accordian_header">
 						<span>Page List</span>
-						<a href="./addpage.cfm" class = "btn btn-success accordian_header_button" >
-							<img src="./Assets/Images/add.png">Add</a>
+						<a href="./editpage.cfm" class = "btn btn-success accordian_header_button" >
+							<img src="./Assets/Images/add.png">Add
+						</a>
 					</div>
 
 					<form method="post" id="listContainer">
@@ -43,7 +44,7 @@
 							</div>
 							<div class="display_none">
 								<p>
-									#local.pageListResult.pagedescs#
+									#local.pageListResult.pagedesc#
 								</p>
 							</div>
 						</cfloop>

@@ -9,6 +9,9 @@
 	</head>
 	<body class="d-flex">
         <cfoutput>
+        
+            <cfset local.newObject = createObject("component", "components.question_28")>
+            <cfset local.queryRoles = local.newObject.getRoles()>
             <form method="POST">
 
                 <div class = "form_group" >
@@ -23,15 +26,6 @@
                     <span id="password_error" class="text-danger"></span>
                 </div>
 
-                <div class = "form_group" >
-                    <label for="userRole">Select Role</label>
-                    <select name="userRole" id="userRole" class = "form-control" >
-                        <option value="User">User</option>
-                        <option value="Editer">Editer</option>
-                        <option value="Admin">Admin</option>
-                    </select>
-                </div>
-
                 <div class = "d-flex" >
                     <span class = "w-50 align-items-center justify-content-evenly d-flex " >
                         Dont have an account<a href = "./signUp.cfm" >Sign Up</a>
@@ -42,13 +36,11 @@
                 </div>
 
                 <cfif isDefined("form.submitBtn")>
-                    <cfset local.newObject = createObject("component", "components.question_28")>
-                    <cfset local.result = local.newObject.userLogin(form.userName,form.password,form.userRole)>
-                    <cfif structKeyExists(local, "result")>
-                        <div class = "text-center text-danger" >#local.result#</div>
+                    <cfset local.loginResult = local.newObject.userLogin(form.userName,form.password)>
+                    <cfif structKeyExists(local.loginResult, "error")>
+                        <div class = "text-center text-danger" >#local.loginResult["error"]#</div>
                     </cfif>
                 </cfif>
-
             </form>
         </cfoutput>
         <script src="../Jquery/jquery-3.7.1.js"></script>
