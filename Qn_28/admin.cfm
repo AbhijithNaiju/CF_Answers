@@ -11,30 +11,35 @@
 	</head>
 	<body class="d-flex">
 		<cfoutput>
+
 			<cfset local.newObject = createObject("component", "components.question_28")>
 			<cfset local.pageListResult = local.newObject.getpages()>
+
 			<div class="main">
+
 				<div class="heading">
 					<a href="" class="logo">
-						<img src="./Assets/Images/Gmail-Logo.webp" alt="Image not found">
+						<div>CMS</div>
 					</a>
-					<a href="./components/question_28.cfc?method=logout" class="btn btn-danger logout">Logout</a>
+					<button onclick="logout()" class="btn btn-danger logout">Logout</button>
 				</div>
+
 				<div class="main_body">
 					<div class="accordian_header">
 						<span>Page List</span>
 						<a href="./addpage.cfm" class = "btn btn-success accordian_header_button" >
 							<img src="./Assets/Images/add.png">Add</a>
 					</div>
-					<div id="listContainer">
+
+					<form method="post" id="listContainer">
 						<cfloop query="#local.pageListResult#">
 							<div class="page_heading ">
 								<span>#local.pageListResult.pagename#</span>
-								<form method="post">
+								<div>
 									<input type="hidden" name="pageId" value="#pageId#">
 									<a href="./editpage.cfm?pageId=#local.pageListResult.pageId#" class = "btn btn-secondary" name="editButton">Edit</a>
-									<button onclick="confirmDelete()" type="submit" class = "btn btn-danger" name="deleteButton">Delete</button>
-								</form>
+									<button onclick="deletePage(this)" type="button" value="#local.pageListResult.pageId#" class = "btn btn-danger" name="deleteButton">Delete</button>
+								</div>
 							</div>
 							<div class="display_none">
 								<p>
@@ -42,19 +47,19 @@
 								</p>
 							</div>
 						</cfloop>
-					</div>
+					</form>
+
 					<cfif structKeyExists(form, "editButton")>
 						<cfset local.pageEdit = local.newObject.editPage(form.pageId)>
 					</cfif>
-					<cfif structKeyExists(form, "deleteButton")>
-						<cfset local.pageDelete = local.newObject.deletePage(form.pageId)>
-						#local.pageDelete#
-					</cfif>
+
 				</div>
 			</div>
+
             <script src="../Jquery/jquery-3.7.1.js"></script>
             <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
-            <script src="js/accordian.js"></script>
+            <script src="js/index.js"></script>
+			
         </cfoutput>
     </body>
 </html>

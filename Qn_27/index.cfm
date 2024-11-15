@@ -7,13 +7,14 @@
     <body class = "w-100" >
         <cfoutput>
             <div class = " m-5 p-5  d-flex flex-column align-items-center border border-dark">
+
                 <div class = "border-bottom border-dark pb-2" >
-                    27. Login page with user name & password. Once a user enters the correct details,
-                        it should redirect to welcome.cfm, if not, it will show an error message in the
-                        login page. If any one of the users, directly access the welcome.cfm without
-                        login, Application should redirect the user in to log in page.In welcome page,
-                        there must be a logout link, which will log out the user from the application &
-                        redirect to log in page.
+                    Login page with user name and password. Once a user enters the correct details,
+                    it should redirect to welcome.cfm, if not, it will show an error message in the
+                    login page. If any one of the users, directly access the welcome.cfm without
+                    login, Application should redirect the user in to log in page.In welcome page,
+                    there must be a logout link, which will log out the user from the application and
+                    redirect to log in page.
                 </div>
 
                 <form method="POST" class = "w-100 m-4" >
@@ -23,16 +24,18 @@
                 </form>
 
                 <cfif isDefined("form.submit")  && len(form.userName)  && len(form.password)>
-                    <cfset local.newObject = createObject("component", "components.question_27")>
-                    <cfset local.result = local.newObject.printDigits(form.userName,form.password)> 
 
-                    <cfif structKeyExists(local, "result")>
-                        <span class = "text-danger">#local.result#</span>
+                    <cfset local.newObject = createObject("component", "components.question_27")>
+                    <cfset local.result = local.newObject.userLogin(form.userName,form.password)> 
+
+                    <cfif structKeyExists(local.result, "error")>
+                        <div class = "text-danger text-center">#local.result["error"]#</div>
                     </cfif>
 
                 <cfelse>
                     Please enter your user name and password
                 </cfif>
+
             </div>
         </cfoutput>
     </body>

@@ -18,6 +18,7 @@
                 </div>
 
                 <form  method="post" class = "" enctype="multipart/form-data">
+
                     <div class = "form_element contact_name  d-flex flex-column">
                         <label class = "form_element_heading">Enter the text<span>*</span></label>
                         <input type = "file" name = "inputFile" class = "form-control" accept=".txt">
@@ -26,14 +27,20 @@
                     <input  type="submit" id="submitButton" name="submit" class="btn btn-primary" >
                 </form>
 
-                <cfif isDefined("form.submit")>
+                <cfif isDefined("form.submit") AND structKeyExists(form, "inputFile") AND len(form.inputFile)>
+
                     <cffile  action="read" file="#form.inputFile#" variable = "inputText">
                     <cfset local.myObj = createObject("component", "components.qn_26")>
                     <cfset local.result = local.myObj.insertValues(inputText)>
-                    <div class = "text-center text-success">#local.result#</div>
+
+                    <cfif structKeyExists(local.result, "success")>
+                        <div class = "text-center text-success">#local.result#</div>
+                    </cfif>
+
                 <cfelseif isDefined("form.submit")>
-                    <div class = "text-center text-danger">Please enter the text</div>
+                    <div class = "text-center text-danger">Please enter the file</div>
                 </cfif>
+
             </div>
         </body>
     </cfoutput>

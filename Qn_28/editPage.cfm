@@ -9,15 +9,18 @@
 	</head>
     <body class="d-flex">
         <cfoutput>
+
             <cfset local.newObject = createObject("component", "components.question_28")>
             <cfset local.pageListResult = local.newObject.getPageFromId(url.pageId)>
+            
             <div class="main">
+
                 <div class="heading">
                     <a href="" class="logo">
                         <img src="./Assets/Images/Gmail-Logo.webp" alt="Image not found">
                     </a>
-                    <a href="./components/question_28.cfc?method=logout" class="btn btn-danger logout">Logout</a>
                 </div>
+
                 <form method="post" class="main_body">
                     <input type="text" name="pageName" required class="form-control my-2" placeholder="Page name" value="#local.pageListResult.pageName#">
                     <input type="text" 
@@ -28,6 +31,7 @@
                                 
                     <input type="submit" name="editPage" value="Edit Page" class="btn btn-secondary w-100 my-2" >
                 </form>
+
                 <cfif structKeyExists(form, "editPage")>
                     <cfset local.newObject = createObject("component", "components.question_28")>
                     <cfset local.result = local.newObject.editPageFromTable(url.pageId,form.pageName,form.pageDescription)>

@@ -3,7 +3,7 @@ function printOutput(printLocation,printValue)
 	document.getElementById(printLocation).innerHTML = printValue;
 }
 
-function form_validate()
+function form_validate(event1)
 {
 	let name=document.getElementById("user_name").value;
 	let password=document.getElementById("password").value;
@@ -22,7 +22,6 @@ function form_validate()
 	else{
 		user_name_error = ""
 	}
-	
 	if(user_name_error == "")
 	{
 		$.ajax({
@@ -33,7 +32,11 @@ function form_validate()
 				if(result)
 				{
 					printOutput("user_name_error","Username already exists");
-					event.preventDefault();
+					document.getElementById("submit_button").type="button";
+				}
+				else
+				{
+					document.getElementById("submit_button").type="submit";
 				}
 			}
 		});

@@ -10,6 +10,7 @@
 	<body class="d-flex">
         <cfoutput>
             <form method="POST">
+
                 <div class = "form_group" >
                     <label for="user_name">User Name</label>
                     <input type="text" name="userName" id="user_name" placeholder=""  class="form-control">
@@ -30,6 +31,7 @@
                         <option value="Admin">Admin</option>
                     </select>
                 </div>
+
                 <div class = "d-flex" >
                     <span class = "w-50 align-items-center justify-content-evenly d-flex " >
                         Dont have an account<a href = "./signUp.cfm" >Sign Up</a>
@@ -38,13 +40,15 @@
                         Login
                     </button>
                 </div>
-            <cfif isDefined("form.submitBtn")>
-                <cfset local.newObject = createObject("component", "components.question_28")>
-                <cfset local.result = local.newObject.userLogin(form.userName,form.password,form.userRole)>
-                <cfif structKeyExists(local, "result")>
-                    <div class = "text-center text-danger" >#local.result#</div>
+
+                <cfif isDefined("form.submitBtn")>
+                    <cfset local.newObject = createObject("component", "components.question_28")>
+                    <cfset local.result = local.newObject.userLogin(form.userName,form.password,form.userRole)>
+                    <cfif structKeyExists(local, "result")>
+                        <div class = "text-center text-danger" >#local.result#</div>
+                    </cfif>
                 </cfif>
-            </cfif>
+
             </form>
         </cfoutput>
         <script src="../Jquery/jquery-3.7.1.js"></script>

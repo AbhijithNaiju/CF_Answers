@@ -1,4 +1,5 @@
 <cfcomponent>
+    <cfset this.datasource = "TESTDS">
     <cfset this.sessionManagement = true>
     <cffunction name="onRequest" >
 

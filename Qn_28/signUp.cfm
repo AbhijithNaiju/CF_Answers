@@ -36,19 +36,21 @@
 						<option value="Admin">Admin</option>
 					</select>
 				</div>
+
 				<div class = "d-flex" >
 					<span class = "w-50 align-items-center justify-content-evenly d-flex " >
 						Already have an account<a href = "./login.cfm" >Login</a>
 					</span>
 					<button type="submit" onclick="form_validate(event)" id="submit_button" name = "submitBtn" class = "btn btn-secondary my-2 w-50" >Sign Up</button>
 				</div>
-					<cfif isDefined("form.submitBtn")>
-						<cfset local.newObject = createObject("component", "components.question_28")>
-						<cfset local.result = local.newObject.userSignup(form.userName,form.password,form.userRole)>
-						<cfif structKeyExists(local, "result")>
-                    <div class = "text-center text-danger" >#local.result#</div>
-						</cfif>
+
+				<cfif isDefined("form.submitBtn")>
+					<cfset local.newObject = createObject("component", "components.question_28")>
+					<cfset local.result = local.newObject.userSignup(form.userName,form.password,form.userRole)>
+					<cfif structKeyExists(local, "result")>
+						<div class = "text-center text-danger" >#local.result#</div>
 					</cfif>
+				</cfif>
 			</form>
 			<script src="../Jquery/jquery-3.7.1.js"></script>
 			<script src="js/form_validation.js"></script>
