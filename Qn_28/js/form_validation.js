@@ -48,7 +48,7 @@ function form_validate(event1)
 	else if(match_space.test(password)){
 		var password_error = "Password should not contain any whitespace";	
 	}
-	else if(password.length<3){
+	else if(password.length<8){
 		var password_error = "Password must be 8 charectors long";
 	}
 	else{
