@@ -35,3 +35,7 @@ create table userTable(userId uniqueidentifier default newid(),userName varchar(
 
 
 create table pageTable(pageId uniqueidentifier default newid(),pageName varchar(50) unique ,pageDesc varchar(200),_createdBy varchar(200),_createdOn date,_updatedBy varchar(200),_updatedOn date)
+
+insert into roleTable values(102,'Editer')
+insert into roleTable values(101,'Admin')
+insert into roleTable values(103,'User')
