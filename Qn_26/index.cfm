@@ -29,14 +29,27 @@
 
                 <cfif isDefined("form.submit") AND structKeyExists(form, "inputFile") AND len(form.inputFile)>
 
-                    <cffile  action="read" file="#form.inputFile#" variable = "inputText">
-                    <cfset local.myObj = createObject("component", "components.qn_26")>
-                    <cfset local.result = local.myObj.insertValues(inputText)>
+                    <cfset local.uploadLocation = expandPath("./uploads/")>
+                    <cffile action="upload" fileField="inputFile" destination="#local.uploadLocation#" nameConflict="makeUnique" result="uploadResult">
 
-                    <cfif structKeyExists(local.result, "success")>
-                        <div class = "text-center text-success">#local.result#</div>
+                    <cfset local.fileInfo = getFileInfo("#local.uploadLocation##uploadResult.serverfile#")>
+                    <cfset local.fileExtension = listLast( local.fileInfo.path, ".")>
+
+                    <cfif local.fileExtension EQ "txt">
+
+                        <cffile  action="read" file="#form.inputFile#" variable = "inputText">
+                        <cfset local.myObj = createObject("component", "components.qn_26")>
+                        <cfset local.result = local.myObj.insertValues(inputText)>
+
+                        <cfif structKeyExists(local.result, "success")>
+                            <div class = "text-center text-success">#local.result#</div>
+                        </cfif>
+
+                    <cfelse>
+
+                        <div class="text-center text-danger">Only .txt files are allowed.</div>
+
                     </cfif>
-
                 <cfelseif isDefined("form.submit")>
                     <div class = "text-center text-danger">Please enter the file</div>
                 </cfif>

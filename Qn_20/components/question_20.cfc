@@ -1,5 +1,6 @@
 <cfcomponent>
     <cffunction  name = "printDigits" returnType="struct">
+    
         <cfargument  name = "captcha" type="string"> 
         <cfargument  name = "captchaInput" type="string"> 
         <cfargument  name = "email" type="string"> 
@@ -11,6 +12,7 @@
         </cfif>
 
         <cfset local.result["emailResult"] = refind("^[0-9A-Za-z.'+_-]+@([0-9A-Za-z-]+\.)+[A-Za-z]+$", trim(arguments.email))>
+
         <cfreturn local.result>
     </cffunction>
 </cfcomponent>

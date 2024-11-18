@@ -1,0 +1,122 @@
+1) Create table EMP(EMPNO integer,EMPNAME varchar(30),JOB varchar(30),MGR integer,HIREDATE varchar(20),SALARY integer,COMM integer,DEPTNO integer);
+
+
+2) insert into emp(Empno,empname,job,mgr,hiredate,salary,deptno) values(7369,'Smith','Clerk',7902,'17-DEC-08',800,20);
+ insert into emp values(7499,'Allen','Salesman',7698,'20-FEB-11',1600,300,30);
+ insert into emp(Empno,empname,job,mgr,hiredate,salary,deptno) values(7566,'Jones','Manager',7839,'02-APR-09',2975,20);
+ insert into emp(Empno,empname,job,mgr,hiredate,salary,deptno) values(7788,'Scott','Analyst',7566,'19-APR-12',3000,20);
+ insert into emp(Empno,empname,job,hiredate,salary,deptno) values(7839,'King','President','17-NOV-09',5000,10);
+ insert into emp(Empno,empname,job,mgr,hiredate,salary,deptno) values(7782,'Clark','Manager',7839,'09-JUN-09',2450,10);
+
+select * from emp;
++-------+---------+-----------+------+-----------+--------+------+--------+
+| EMPNO | EMPNAME | JOB       | MGR  | HIREDATE  | SALARY | COMM | DEPTNO |
++-------+---------+-----------+------+-----------+--------+------+--------+
+|  7369 | Smith   | Clerk     | 7902 | 17-DEC-08 |    800 | NULL |     20 |
+|  7499 | Allen   | Salesman  | 7698 | 20-FEB-11 |   1600 |  300 |     30 |
+|  7566 | Jones   | Manager   | 7839 | 02-APR-09 |   2975 | NULL |     20 |
+|  7788 | Scott   | Analyst   | 7566 | 19-APR-12 |   3000 | NULL |     20 |
+|  7839 | King    | President | NULL | 17-NOV-09 |   5000 | NULL |     10 |
+|  7782 | Clark   | Manager   | 7839 | 09-JUN-09 |   2450 | NULL |     10 |
+|  7782 | Blake   | Manager   | 7839 | 01-MAY-09 |   2850 | NULL |     30 |
+|  7902 | Ford    | Analyst   | 7566 | 03-DEC-09 |   3000 | NULL |     20 |
++-------+---------+-----------+------+-----------+--------+------+--------+
+
+
+3)  select deptno,job,empname,salary from emp order by salary asc;
+    select deptno,job,empname,salary from emp order by salary;
++--------+-----------+---------+--------+
+| deptno | job       | empname | salary |
++--------+-----------+---------+--------+
+|     20 | Clerk     | Smith   |    800 |
+|     30 | Salesman  | Allen   |   1600 |
+|     10 | Manager   | Clark   |   2450 |
+|     30 | Manager   | Blake   |   2850 |
+|     20 | Manager   | Jones   |   2975 |
+|     20 | Analyst   | Scott   |   3000 |
+|     20 | Analyst   | Ford    |   3000 |
+|     10 | President | King    |   5000 |
++--------+-----------+---------+--------+
+
+select deptno,job,empname,salary from emp order by salary desc;
++--------+-----------+---------+--------+
+| deptno | job       | empname | salary |
++--------+-----------+---------+--------+
+|     10 | President | King    |   5000 |
+|     20 | Analyst   | Scott   |   3000 |
+|     20 | Analyst   | Ford    |   3000 |
+|     20 | Manager   | Jones   |   2975 |
+|     30 | Manager   | Blake   |   2850 |
+|     10 | Manager   | Clark   |   2450 |
+|     30 | Salesman  | Allen   |   1600 |
+|     20 | Clerk     | Smith   |    800 |
++--------+-----------+---------+--------+
+
+
+4)  select empname,job,salary from emp where not mgr is null;
++---------+----------+--------+
+| empname | job      | salary |
++---------+----------+--------+
+| Smith   | Clerk    |    800 |
+| Allen   | Salesman |   1600 |
+| Jones   | Manager  |   2975 |
+| Scott   | Analyst  |   3000 |
+| Clark   | Manager  |   2450 |
+| Blake   | Manager  |   2850 |
+| Ford    | Analyst  |   3000 |
++---------+----------+--------+
+
+
+5)  select min(salary),max(salary) from emp group by job;
++-------------+-------------+
+| min(salary) | max(salary) |
++-------------+-------------+
+|         800 |         800 |
+|        1600 |        1600 |
+|        2450 |        2975 |
+|        3000 |        3000 |
+|        5000 |        5000 |
++-------------+-------------+
+select min(salary),max(salary),job from emp group by job;
++-------------+-------------+-----------+
+| min(salary) | max(salary) | job       |
++-------------+-------------+-----------+
+|         800 |         800 | Clerk     |
+|        1600 |        1600 | Salesman  |
+|        2450 |        2975 | Manager   |
+|        3000 |        3000 | Analyst   |
+|        5000 |        5000 | President |
++-------------+-------------+-----------+
+
+
+6)select avg(salary) from emp group by deptno having count(job)>3;   
+
++-------------+
+| avg(salary) |
++-------------+
+|   2443.7500 |
++-------------+
+select avg(salary),deptno from emp group by deptno having count(job)>3;
++-------------+--------+
+| avg(salary) | deptno |
++-------------+--------+
+|   2443.7500 |     20 |
++-------------+--------+
+
+
+7) select job from emp group by job having max(salary)>=3000;
++-----------+
+| job       |
++-----------+
+| Analyst   |
+| President |
++-----------+
+
+
+8) select count(empno) from emp where job='Manager';
++--------------+
+| count(empno) |
++--------------+
+|            3 |
++--------------+
+

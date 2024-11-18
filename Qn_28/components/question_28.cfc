@@ -144,14 +144,18 @@
         <cfargument  name="pageName" type="string">
         <cfargument  name="pageDescription" type="string">
 
+        <cfset local.pagename = trim(arguments.pageName)>
+        <cfset local.pagename = reReplace(local.pagename, "[[:space:]]", " ", "ALL") />
+        <cfdump  var="#local.pagename#">
+
         <cfquery name="pageList" >
             SELECT pagename
             FROM pageTable
-            WHERE pagename=<cfqueryparam value='#arguments.pageName#' cfsqltype="cf_sql_varchar">;
+            WHERE pagename=<cfqueryparam value='#local.pageName#' cfsqltype="cf_sql_varchar">;
         </cfquery>
 
         <cfif pageList.recordcount>
-            <cfset local.structResult["error"] = "Pagename '#arguments.pageName#' already exists">
+            <cfset local.structResult["error"] = "Pagename '#local.pageName#' already exists">
             <cfreturn local.structResult>
         <cfelse>
 
@@ -159,7 +163,7 @@
 
             <cfquery name="insertQuery" >
                 INSERT INTO pageTable(pagename,pagedesc,_createdBy,_createdOn,_updatedBy,_updatedOn) 
-                VALUES( <cfqueryparam value='#arguments.pageName#' cfsqltype="cf_sql_varchar">,
+                VALUES( <cfqueryparam value='#local.pageName#' cfsqltype="cf_sql_varchar">,
                         <cfqueryparam value='#arguments.pageDescription#' cfsqltype="cf_sql_varchar">,
                         <cfqueryparam value='#session.userId#' cfsqltype="cf_sql_varchar">,
                         <cfqueryparam value='#local.date#' cfsqltype="cf_sql_date">,
@@ -167,7 +171,7 @@
                         <cfqueryparam value='#local.date#' cfsqltype="cf_sql_date">)
             </cfquery>
 
-            <cflocation url = "./admin.cfm">
+<!---             <cflocation url = "./admin.cfm"> --->
 
         </cfif>
     </cffunction>
@@ -178,17 +182,18 @@
         <cfargument  name="pageDescription" type="string">
 
         <cfset local.structResult = structNew()>
+        <cfset local.pagename = trim(arguments.pageName)>
 
         <cfquery name="pageList" >
             SELECT pageId,pagename
             FROM pageTable
-            WHERE pagename=<cfqueryparam value='#arguments.pageName#' cfsqltype="cf_sql_varchar">;
+            WHERE pagename=<cfqueryparam value='#local.pageName#' cfsqltype="cf_sql_varchar">;
         </cfquery>
 
         <cfif pageList.recordcount>
 
             <cfif pageList.pageId NEQ arguments.pageId>
-                <cfset local.structResult["error"] = "Pagename '#arguments.pageName#' already exists">
+                <cfset local.structResult["error"] = "Pagename '#local.pageName#' already exists">
             </cfif>
 
         </cfif>
@@ -198,7 +203,7 @@
             <cfset local.date = now()>
             <cfquery name="insertQuery" >
                 UPDATE pageTable
-                SET pagename=<cfqueryparam value='#arguments.pageName#' cfsqltype="cf_sql_varchar">,
+                SET pagename=<cfqueryparam value='#local.pageName#' cfsqltype="cf_sql_varchar">,
                     pagedesc=<cfqueryparam value='#arguments.pageDescription#' cfsqltype="cf_sql_varchar">,
                     _updatedBy=<cfqueryparam value='#session.userId#' cfsqltype="cf_sql_varchar">,
                     _updatedOn=<cfqueryparam value='#local.date#' cfsqltype="cf_sql_date">

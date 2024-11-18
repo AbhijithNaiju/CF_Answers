@@ -74,7 +74,7 @@
 
                         <div class = "form_element  d-flex flex-column">
                             <label class="form_element_heading">Attach a Copy of Your Resume</label>
-                            <input type="file" name="resumeImage" class = "input_field" accept="image/*">
+                            <input type="file" name="resumeImage" class = "input_field">
                         </div>
 
                         <div class = "form_element salary_container  d-flex flex-column">
@@ -143,6 +143,8 @@
                                     destination="#local.uploadLocation#"
                                     nameconflict="makeunique" result="fileUploadData">
                             <cfset local.fileLink = "#local.uploadLocation#/#fileUploadData.SERVERFILE#">
+                        <cfelse>
+                            <cfset local.fileLink = "">
                         </cfif>
 
                         <cfset local.myObj = createObject("component", "components.qn_23")>

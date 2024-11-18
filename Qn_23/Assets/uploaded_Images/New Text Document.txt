@@ -1,0 +1,41 @@
+CREATE TABLE employment (
+    firstname VARCHAR(50),
+    lastname VARCHAR(50),
+    email VARCHAR(100),
+    phone VARCHAR(50),
+    positionapplying VARCHAR(50),
+    relocate VARCHAR(50),
+    startdate VARCHAR(50),
+    portfolioLink VARCHAR(50),
+    resumeImage VARCHAR(200),
+    salary VARCHAR(50)
+);
+drop table employment
+
+select  from userlogin
+
+insert into userlogin values('Abhijith','03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4');
+
+create table userlogin(userid uniqueidentifier default newid(),username varchar(50),password varchar(200))
+
+insert into userlogin (username,password) values('Adarsh','EF797C8118F02DFB649607DD5D3F8C7623048C9C063D532CC95C5ED7A898A64F')
+
+drop table userlogin
+
+EF797C8118F02DFB649607DD5D3F8C7623048C9C063D532CC95C5ED7A898A64F
+
+select * from userlogin
+
+create table roleTable(roleId int primary key, roleName varchar(20))
+create database cmfDatabase
+
+use cmfDatabase
+
+create table userTable(userId uniqueidentifier default newid(),userName varchar(100),password varchar(200),roleId int,foreign key (roleId) references roleTable(roleId))
+
+
+create table pageTable(pageId uniqueidentifier default newid(),pageName varchar(50) unique ,pageDesc varchar(200),_createdBy varchar(200),_createdOn date,_updatedBy varchar(200),_updatedOn date)
+
+insert into roleTable values(102,'Editer')
+insert into roleTable values(101,'Admin')
+insert into roleTable values(103,'User')

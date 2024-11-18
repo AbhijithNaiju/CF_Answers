@@ -5,7 +5,8 @@
         
         <cfquery name="formInput"  datasource="TESTDS">
             INSERT INTO loginEmail( name ,email )
-            VALUES( '#arguments.firstName#','#arguments.email#');
+            VALUES( <cfqueryparam value='#arguments.firstName#' cfsqltype="cf_sql_varchar">,
+                    <cfqueryparam value='#arguments.email#' cfsqltype="cf_sql_varchar">);
         </cfquery>
         
         <cfreturn "Form submitted  successfully">
@@ -16,10 +17,10 @@
         <cfargument  name="email" type="string">
 
         <cfquery name="emailcheck" datasource="TESTDS">
-            SELECT count('name') 
+            SELECT count('email') 
             AS emailcount 
             FROM loginEmail 
-            WHERE Email='#arguments.email#'
+            WHERE Email=<cfqueryparam value='#arguments.email#' cfsqltype="cf_sql_varchar">;
         </cfquery>
 
         <cfif emailcheck.emailcount>
